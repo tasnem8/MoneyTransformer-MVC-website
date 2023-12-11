@@ -1,0 +1,86 @@
+﻿@model MoneyTransformer.Models.Home
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Home</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Text1" class="control-label"></label>
+                <input asp-for="Text1" class="form-control" />
+                <span asp-validation-for="Text1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text2" class="control-label"></label>
+                <input asp-for="Text2" class="form-control" />
+                <span asp-validation-for="Text2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text3" class="control-label"></label>
+                <input asp-for="Text3" class="form-control" />
+                <span asp-validation-for="Text3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image1path" class="control-label"></label>
+                <input asp-for="Image1path" class="form-control" />
+                <span asp-validation-for="Image1path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image2path" class="control-label"></label>
+                <input asp-for="Image2path" class="form-control" />
+                <span asp-validation-for="Image2path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image3path" class="control-label"></label>
+                <input asp-for="Image3path" class="form-control" />
+                <span asp-validation-for="Image3path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logopath" class="control-label"></label>
+                <input asp-for="Logopath" class="form-control" />
+                <span asp-validation-for="Logopath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phonenumber" class="control-label"></label>
+                <input asp-for="Phonenumber" class="form-control" />
+                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image4path" class="control-label"></label>
+                <input asp-for="Image4path" class="form-control" />
+                <span asp-validation-for="Image4path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facebooklink" class="control-label"></label>
+                <input asp-for="Facebooklink" class="form-control" />
+                <span asp-validation-for="Facebooklink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instagramlink" class="control-label"></label>
+                <input asp-for="Instagramlink" class="form-control" />
+                <span asp-validation-for="Instagramlink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

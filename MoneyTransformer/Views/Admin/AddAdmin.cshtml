@@ -1,0 +1,78 @@
+﻿@model MoneyTransformer.Models.Useraccount
+
+@{
+    ViewData["Title"] = "Add Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="">
+    <div class="card-body">
+<h1 class="Admintitl p-4">Add Admin to the system </h1>
+
+</div>
+<div class="">
+<div class="row ">
+    <div class="col-md-4">
+        <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data" asp-action="AddAdmin">
+
+    <div class="mb-3">
+
+    <label asp-for="Fname" class="form-label">First Name <span>*</span></label>
+    <input  asp-for="Fname" type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" required>
+<span asp-validation-for="Fname" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+    <label asp-for="Lname" class="form-label">Last Name <span>*</span></label>
+    <input  asp-for="Lname" type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" required>
+    <span asp-validation-for="Lname" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+    <label asp-for="ImageFile" class="form-label"></label>
+    <input asp-for="ImageFile" class="form-control" />
+    <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+    <label for="Email" class="form-label">Email Address <span>*</span></label>
+    <input type="text" class="form-control"name="Email" id="Email" aria-describedby="emailHelp" placeholder="Your Email" required>
+    </div>
+    <div class="mb-4">
+    <label for="password" class="form-label">Password <span>*</span></label>
+    <input type="password"name="password" class="form-control" id="password" placeholder="password" required>
+
+    </div>
+    <div class="mb-4">
+    <label for="compassword" class="form-label">confirm Password <span>*</span></label>
+    <input type="password"name="compassword" class="form-control" id="compassword" placeholder="password" required>
+
+    </div>
+    <div style="color:red;">
+                        @if (ViewData["Messag2"] != null)
+                        {
+                            @ViewData["Messag2"]
+                        }
+    </div>
+    <div style="color:red;">
+                        @if (ViewData["check"] != null)
+                        {
+                            @ViewData["check"]
+                        }
+    </div>
+    <div class="form-group form-button">
+                <input type="submit" name="signup" id="signup" class="form-submit  w-100 py-8 fs-4 mb-4 rounded-2"style="background-color: #7679ee;color: white;border-color: #7679ee;" value="Add"/>
+            </div>
+                    @*<a href="/Home/Index" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a>*@
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+  <div>
+    <a asp-action="ViewAdmins">Back to Admin Page</a>
+</div>

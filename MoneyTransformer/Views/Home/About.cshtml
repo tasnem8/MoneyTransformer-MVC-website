@@ -1,0 +1,140 @@
+﻿@model MoneyTransformer.Models.Aboutu
+@{
+    ViewData["Title"] = "About Us";
+}
+
+
+        <!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0">
+
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-12 text-center">
+                            <h1 class="text-white animated zoomIn">About Us</h1>
+                            <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a class="text-white" href="/Home/Index">Home</a></li>
+                            @*<li class="breadcrumb-item"><a class="text-white" href="/Home/">Pages</a></li>*@
+                                    <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(29, 29, 39, 0.7);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-9 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title position-relative mb-4 pb-2">
+                    <h6 class="position-relative text-primary ps-4">About Us</h6>
+                    <h2 class="mt-2"> Who is MoneyMove?</h2>
+                </div>
+                <p class="mb-4" style="color:black">Welcome to  <b>MoneyMove</b>, your trusted partner for secure and convenient money transfers. Our mission is to 
+                    make sending and receiving money a seamless experience for everyone, connecting families, friends, and businesses. </p>
+                   
+                <p style="color:black">At <b>MoneyMove</b> , we understand the importance of your hard-earned money and the significance of timely transactions. With a passion for innovation, we have developed a platform that prioritizes speed, security, and simplicity. Our user-friendly 
+                    interface ensures that you can initiate transfers with just a few clicks, providing you with peace of mind every step of the way.</p>
+               @* <div class="row g-3">
+                    <div class="col-sm-6 col-lg-9">
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Open MoneyMove Account and Wallet Free</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Online, Fast and easy Transactions</h6>
+
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Trusted and Secure</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Different Banks avaliable </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Avaliable 24/7 </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>No limite Transactions </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Payee and Credit Confirmation </h6>
+
+
+                    </div>
+                </div>*@
+                <div class="d-flex align-items-center mt-4">
+                    <a class="btn btn-outline-primary btn-square me-3" href="@ViewBag.facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="@ViewBag.instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+
+        <!-- Team Start -->
+<div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative  mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="position-relative d-inline text-primary ps-4">Our Team</h6>
+                    <h2 class="mt-2">Meet Our Team Members</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item">
+                            <div class="d-flex">
+
+                               <img src = @Url.Content("~/Images/" + Model.Image1path) asp-append-version="true" class="img-fluid rounded w-100">
+                            </div>
+                            <div class="px-4 py-3">
+                                <h5 class="fw-bold m-0">@Html.DisplayFor(model => model.Text1)</h5>
+                                <small>CEO</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item">
+                            <div class="d-flex">
+
+                               <img src = @Url.Content("~/Images/" + Model.Image2path) asp-append-version="true" class="img-fluid rounded w-100">
+
+                            </div>
+                            <div class="px-4 py-3">
+                                <h5 class="fw-bold m-0">@Html.DisplayFor(model => model.Text2)</h5>
+                                <small>Manager</small>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-item">
+                            <div class="d-flex">
+                               <img src = @Url.Content("~/Images/" + Model.Image3path) asp-append-version="true" class="img-fluid rounded w-100">
+
+                            </div>
+                            <div class="px-4 py-3">
+                                <h5 class="fw-bold m-0">@Html.DisplayFor(model => model.Text3)</h5>
+                                <small>Designer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->

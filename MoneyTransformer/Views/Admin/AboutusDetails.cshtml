@@ -1,0 +1,121 @@
+﻿@model MoneyTransformer.Models.Aboutu
+
+@{
+    ViewData["Title"] = "AboutusDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<form  method="POST" asp-action="AboutusDetails" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+       <!-- Team Start -->
+       <div class="card">
+<div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative  mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="position-relative d-inline text-primary ps-4">The Team</h6>
+                    <h2 class="mt-2">Meet Our Team Members</h2>
+                </div>
+          
+            
+
+                <div class="row g-4">
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item card-footer">
+                          <div class="d-flex">
+                               
+                           <img src = @Url.Content("~/Images/" + Model.Image1path) asp-append-version="true"  class="img-fluid rounded w-100">
+                          
+                            </div>
+                             <div class="form-group">
+                                <label asp-for="ImageFile1" class="control-label">Change Picture</label>
+                                <input asp-for="ImageFile1" class="form-control" />
+                                <span asp-validation-for="ImageFile1" class="text-danger"></span>
+                          </div>
+                            <div class="px-4 py-3">
+                                    <div class="form-group">
+                                    <label asp-for="Text1" class="control-label">Change Name</label>
+                                        <input asp-for="Text1" class="form-control" />
+                                        <span asp-validation-for="Text1" class="text-danger"></span>
+                                    </div>
+                                    
+                                <small>CEO</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item card-footer">
+                            <div class="d-flex">
+                               <img src = @Url.Content("~/Images/" + Model.Image2path) asp-append-version="true" class="img-fluid rounded w-100">
+
+                            </div>
+                            <div class="form-group">
+                                    <label asp-for="ImageFile2" class="control-label">Change Picture</label>
+                                    <input asp-for="ImageFile2" class="form-control" />
+                                    <span asp-validation-for="ImageFile2" class="text-danger"></span>
+                                </div>
+                            <div class="px-4 py-3">
+                                <div class="form-group">
+                                    <label asp-for="Text2" class="control-label">Change Name</label>
+                                    <input asp-for="Text2" class="form-control" />
+                                    <span asp-validation-for="Text2" class="text-danger"></span>
+                                </div>
+                                <small>Manager</small>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item card-footer">
+                            <div class="d-flex">
+                               <img src = @Url.Content("~/Images/" + Model.Image3path) asp-append-version="true" class="img-fluid rounded w-100">
+
+                            </div>
+                            <div class="form-group">
+                                    <label asp-for="ImageFile3" class="control-label">Change Picture</label>
+                                    <input asp-for="ImageFile3" class="form-control" />
+                                    <span asp-validation-for="ImageFile3" class="text-danger"></span>
+                                </div>
+                            <div class="px-4 py-3">
+                                <div class="form-group">
+                                          <label asp-for="Text3" class="control-label"></label>
+                                            <input asp-for="Text3" class="form-control" />
+                                            <span asp-validation-for="Text3" class="text-danger"></span>
+                                </div>
+                                <small>Designer</small>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                 <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary m-md-4" />
+            </div>
+       
+            </div>
+        </div>
+        </div>
+         </form>
+        <!-- Team End -->
+
+
+@* <div class="form-group">
+                <label asp-for="Text3" class="control-label"></label>
+                <input asp-for="Text3" class="form-control" />
+                <span asp-validation-for="Text3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text4" class="control-label"></label>
+                <input asp-for="Text4" class="form-control" />
+                <span asp-validation-for="Text4" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ImageFile3" class="control-label"></label>
+                <input asp-for="ImageFile3" class="form-control" />
+                <span asp-validation-for="ImageFile3" class="text-danger"></span>
+            </div>*@

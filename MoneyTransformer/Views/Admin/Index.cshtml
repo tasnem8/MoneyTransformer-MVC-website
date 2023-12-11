@@ -1,0 +1,357 @@
+﻿@model IEnumerable<MoneyTransformer.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+    var jsonData = ViewBag.JsonData;
+    var jsonData2 = ViewBag.JsonData2;
+
+    var i = 0;
+}
+<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+   
+        <div class="row">
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+             
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4 rounded-3 p-3" style="background-color: #7679ee26">Registered User</h6>
+
+                <div class="d-flex  justify-content-center">
+
+                  <h6 class="fw-semibold fs-4 mb-0 ">@ViewBag.RegisUsers </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4 rounded-3 p-3" style="background-color: #7679ee26">Banks Supported</h6>
+                <div class="d-flex justify-content-center">
+                  <h6 class="fw-semibold fs-4 mb-0">@ViewBag.banks</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4 rounded-3 p-3" style="background-color: #7679ee26">Wallets Created</h6>
+                <div class="d-flex justify-content-center">
+                  <h6 class="fw-semibold fs-4 mb-0">@ViewBag.wallets </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4 rounded-3 p-3" style="background-color: #7679ee26">Number Of Transactions</h6>
+                <div class="d-flex  justify-content-center">
+                  <h6 class="fw-semibold fs-4 mb-0">@ViewBag.transactions </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">Today Transactions's Commission</h5>
+                </div>
+                <ul class="timeline-widget mb-0 position-relative mb-n5">
+
+                    @foreach (var item in (IEnumerable<dynamic>)ViewData["transactionsinfocom"])
+                    {
+                        if (item.TransactionDate.Date == DateTime.Today)
+                        {
+
+                                    <li class="timeline-item d-flex position-relative overflow-hidden">
+                                                        <div class="timeline-time text-dark flex-shrink-0 text-end">@item.TransactionDate.ToString("hh:mm tt")</div>
+                                        <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                                            <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                                            <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                                        </div>
+                                                <div class="timeline-desc fs-3 text-dark mt-n1">@item.TransactionCommission</div>
+                                    </li>
+
+
+                        }
+                    }
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 d-flex align-items-stretch">
+
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Transactions</h5>
+                <div class="table-responsive">
+                      <form action="Index" method="post">
+
+                          <div class="row">
+                        <label for="startDate" class="col-lg-2 pt-2">Start Date: </label>
+                        <input type="date" class="form-control w-50"name="startDate"id="startDate"/>
+                        </div>
+                        <div class="row">
+                        <label for="endDate" class="col-lg-2 pt-2 mt-3">End Date: </label>
+                        <input type="date" class="form-control mt-3 w-50 mb-3"name="endDate"id="endDate"/>
+                        <button type="submit" class="btn btn-primary mt-3 mb-3 ms-4 col-lg-2">Search</button>
+
+                        </div>
+
+                    </form>
+                  <table class="table  text-nowrap mb-0 align-middle" id="example1">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0"> </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">User Name</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">From IBAN</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">To IBAN</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Amount</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Commission</h6>
+                        </th>
+                         <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Date</h6>
+                        </th>
+                          <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Time</h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (var item in (IEnumerable<dynamic>)ViewData["transactionsinfo"])
+                            {
+                                i++;
+                                    <tr>
+                                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i</h6></td>
+                            <td class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-1">@item.UserFName @item.UserLName</h6>
+
+                            </td>
+                            <td class="border-bottom-0">
+                                  <p class="mb-0 fw-normal">@item.WalletNumber</p>
+                            </td>
+                                 <td class="border-bottom-0">
+                                   <p class="mb-0 fw-normal">@item.ReceIban</p>
+                                </td>
+                            <td class="border-bottom-0">
+                              <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-success rounded-3 fw-semibold">@item.TransactionAmount JD</span>
+                              </div>
+                            </td>
+                            <td class="border-bottom-0">
+                                  <h6 class="fw-semibold mb-0 fs-4">@item.TransactionCommission</h6>
+                            </td>
+                               <td class="border-bottom-0">
+                                              <h6 class="fw-semibold mb-0 fs-4">@item.TransactionDate.ToString("MM/dd/yyyy")</h6>
+                                </td>
+                                   <td class="border-bottom-0">
+                                                  <h6 class="fw-semibold mb-0 fs-4">@item.TransactionDate.ToString("HH:mm:ss")</h6>
+                                    </td>
+                          </tr> 
+                            }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Sales Now</h5>
+                  </div>
+                 
+                </div>
+                <div id="chart2"></div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+
+                 <div class=" d-flex align-items-stretch">
+                <div class="card w-100">
+                  <div class="card-body p-4">
+                    <h5 class="card-title fw-semibold mb-4 rounded-3 p-3" style="background-color: #7679ee26">#Bank's Wallets</h5>
+                    <div class="table-responsive">
+                      <table class="table text-nowrap mb-0 align-middle" id="table2" >
+                        <thead class="text-dark fs-4 border-bottom">
+                          <tr>
+                            <th class="border-bottom-0">
+                              <h6 class="fw-semibold mb-0">Bank Name</h6>
+                            </th>
+                            <th class="border-bottom-0">
+                              <h6 class="fw-semibold mb-0">Wallet Counts</h6>
+                            </th>
+                            
+                          </tr>
+                        </thead>
+                   @foreach (var item in (IEnumerable<dynamic>)ViewData["walletscount"])
+                      {
+                        @*<p>Bank: @item.BankName, Wallet Count: @item.WalletCount</p>*@
+
+                        <tbody>
+                          <tr>
+                                <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@item.BankName</h6></td>
+                            <td class="border-bottom-0 text-center">
+                                        <h5 class="fw-semibold mb-1">@item.WalletCount</h5>
+                                               
+                            </td>
+                          
+                          
+                          </tr> 
+                                        
+                        </tbody>
+                      
+
+                        }
+
+                        </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+         </div>
+         <table id="tableContainer"></table>
+         <div id="chartContainer"></div>
+
+
+
+<script type="text/javascript">
+
+var jsonData = @Html.Raw(jsonData);
+
+
+var chartData2 = jsonData.map(item => ({
+        x: item.month,
+        y: item.TotalCommission
+    }));
+
+    var options = {
+        chart: {
+            type: 'bar'
+           
+        },
+        title: {
+        text: 'Revenu [@ViewBag.m] Performance', // The title of your chart
+        align: 'center', // Title alignment (optional)
+        margin: 10 // Margin around the title (optional)
+        },
+
+        plotOptions: {
+        bar: {
+             barHeight: '70%'
+        }
+        },
+        tooltip: {
+        followCursor: true,
+    
+        y: {
+            //formatter: desv_time,
+            title: 'Time difference',
+        },
+        marker: {show:false}
+      },
+        xaxis: {
+            type: 'datetime',
+           // min: new Date('02/01/2001').getTime(),
+         
+            title: {
+              text: 'Months' // Label for the x-axis
+            }
+  
+          
+        },
+        yaxis:{
+            title: {
+              text: 'comission' // Label for the x-axis
+            }
+        },
+        series: [{
+            name: 'Commission',
+            data: chartData2
+        }],
+       tooltip: {
+    enabled: false // Disable the tooltip
+  }
+    };
+
+
+    var chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+    chart2.render();
+
+
+
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script>
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+              
+                'excelHtml5',
+              
+                'pdfHtml5'
+            ]
+        });
+    });
+
+     $(document).ready(function () {
+        $('#table2').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+               
+            ]
+        });
+    });
+</script>

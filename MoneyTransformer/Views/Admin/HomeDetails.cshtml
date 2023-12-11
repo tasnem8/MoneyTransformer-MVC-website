@@ -1,0 +1,92 @@
+﻿@model MoneyTransformer.Models.Home
+@{
+    ViewData["Title"] = "HomeDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@*
+<div class="card">
+    <div class="card-body ">
+
+        <h2 class="titl" style=" background-color: #7679ee30; border-radius: 36px;padding-top: 14px;padding-left: 26px;padding-bottom: 10px;margin-left: -13px;"><i class="ti ti-file-description"></i>CONTACT-US Messages</h2>
+    </div>
+    <div class="card-body">
+*@
+
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="card">
+       <div class="card-body">
+         <form  method="POST" asp-controller="Admin" asp-action="HomeDetails" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+                <h5 class="card-title fw-semibold mb-4">Home Images</h5>
+
+            <div class="row">
+
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                 <img src = @Url.Content("~/Images/" + Model.Image1path) asp-append-version="true"  width ="200px" height ="200px">
+
+                <div class="card-body">
+                    <h5 class="card-title">Background Image</h5>
+                    <p class="card-text">Change : </p>
+                     <label asp-for="ImageFile1" class="control-label"></label>
+                    <input asp-for="ImageFile1" class="form-control" />
+                    <span asp-validation-for="ImageFile1" class="text-danger"></span>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5 class="card-title fw-semibold mb-4"></h5>
+                <div class="card">
+                 <img src = @Url.Content("~/Images/" + Model.Logopath) asp-append-version="true"  width ="200px" height ="200px">
+
+                <div class="card-body">
+                    <h5 class="card-title">Logo</h5>
+                    <p class="card-text">Change : </p>
+                     <label asp-for="LogoFile" class="control-label"></label>
+                    <input asp-for="LogoFile" class="form-control" />
+                     <span asp-validation-for="LogoFile" class="text-danger"></span>
+                </div>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <h5 class="card-title fw-semibold mb-4"></h5>
+                <div class="card">
+                 <img src = @Url.Content("~/Images/" + Model.Image2path) asp-append-version="true"  width ="200px" height ="200px">
+
+                <div class="card-body">
+                    <h5 class="card-title">Forms Logo</h5>
+                    <p class="card-text">Change : </p>
+                     <label asp-for="ImageFile2" class="control-label"></label>
+                    <input asp-for="ImageFile2" class="form-control" />
+                    <span asp-validation-for="ImageFile2" class="text-danger"></span>
+                </div>
+                </div>
+            </div>
+            </div>
+                <h5 class="card-title fw-semibold mb-4">Home Texts</h5>
+
+             <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">Welcoming Text</h5>
+                    <p class="card-text">Change : </p>
+                     @*<label asp-for="Text1" class="control-label"></label>*@
+                    <input  asp-for="Text1" class="form-control"/>
+                    <span asp-validation-for="Text1" class="text-danger"></span>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+          </form>
+       </div>
+     </div>
+   </div>
+
+</div>

@@ -1,0 +1,225 @@
+﻿
+
+@model MoneyTransformer.Models.Useraccount
+@{
+    var i = 0;
+    ViewData["Title"] = "Profile";
+ 
+    if (ViewBag.roleid == 1)
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    else
+        Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+@if(ViewBag.roleid==2)
+{
+    <!-- Navbar & Hero Start -->
+ <div class="container-xxl position-relative p-0">
+    <div class="container-xxl py-5 bg-primary hero-header mb-5">
+        <div class="container my-5 py-5 px-lg-5">
+            <div class="row g-5 py-5">
+                <div class="col-12 text-center">
+                        <h1 class="text-white animated zoomIn">Welcom @ViewBag.Fname</h1>
+                    <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="/Home/Index">Home</a></li>
+                    @*<li class="breadcrumb-item"><a class="text-white" href="/Home/">Pages</a></li>*@
+                            <li class="breadcrumb-item text-white active" aria-current="page">Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Navbar & Hero End -->
+
+}
+
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+
+ <hr class="mt-0 mb-4">
+    <div class="row  justify-content-md-center ">
+        <div class="col-xl-5 col-lg-6">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+
+                    <!-- Profile picture image-->
+                 <img src = @Url.Content("~/Images/" + Model.ImagePath) asp-append-version="true"  width ="200px" height ="200px">
+
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                        @* <label class="small mb-1" for="inputUsername">Username: </label>*@
+                            <span>@ViewBag.Fname</span> 
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 col-lg-6">
+            <!-- Account details card-->
+            <div class="card mb-4" style="height: 325px;">
+                <div class="card-header">Account Details</div>
+                <div class="card-body" style="padding: 42px;">
+
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="inputFirstName">First name: </label>
+                            <span class="text">@Html.DisplayFor(model => model.Fname)</span>
+
+                        </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="inputLastName">Last name: </label>
+                            <span class="text">@Html.DisplayFor(model => model.Lname)</span>
+                            </div>
+                        </div>
+                          <div class="row gx-3 mb-3">
+
+                            <!-- Form Group (Email)-->
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="inputLastName">Email: </label>
+                            <span class="text">@ViewBag.Email</span>
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                         <div class="col-md-6" style="padding-top: 37px;">
+                                  <a asp-action="UpdateInfo" asp-route-id="@Model?.Id" class="bttn">Update</a> |
+
+                          </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.roleid == 2)
+{
+        <div class="container-xl px-4 mt-4" id="recentTra">
+        <!-- Account page navigation-->
+
+        <hr class="mt-0 mb-4">
+        <div class="row  justify-content-md-center ">
+            <div class="">
+                <div class="card mb-4 mb-xl-0 ">
+                    <div class="card-header">Recent Transactions </div>
+                    <div class="card-body text-center">
+                    <form action="DisplayInfo" method="post">
+
+                          <div class="row">
+                                    <label for="startDate" class="col-lg-1 pt-1">Start Date: </label>
+                                    <input type="date" class="form-control mb-3 w-auto"name="startDate"id="startDate"/>
+                        
+                                <label for="endDate" class="col-lg-1 pt-1">End Date: </label>
+                            <input type="date" class="form-control mb-3 w-auto"name="endDate"id="endDate"/>
+                        <button type="submit"  class="btn btn-primary mt-3 mb-3 ms-4 col-lg-1">Search</button>
+
+                        </div>
+</form>
+                    <table class="table  text-nowrap mb-0 align-middle" id="example1">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0"> </h6>
+                                </th>
+                            
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">From</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">To</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Amount</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Commission</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Date</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Time</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (IEnumerable<dynamic>)ViewData["transCustInfo"])
+                            {
+                                i++;
+                                <tr>
+                                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">@i</h6></td>
+                                   
+                                    <td class="border-bottom-0">
+                                        <p class="mb-0 fw-normal">@item.WalletNumber </p>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <p class="mb-0 fw-normal">@item.ReceIban</p>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="align-items-center gap-2">
+                                            <span class="badge bg-success rounded-3 fw-semibold">@item.TransactionAmount JD</span>
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <span class="fs-6">@item.TransactionCommission</span>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                                        <span class="fs-6">@item.TransactionDate.ToString("MM/dd/yyyy")</span>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                                <span class="fs-6">@item.TransactionDate.ToString("HH:mm")</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+
+
+
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script>
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'pdfHtml5'
+            ]
+        });
+    });
+
+  
+</script>
+
+
+
+

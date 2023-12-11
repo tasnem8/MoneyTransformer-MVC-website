@@ -1,0 +1,121 @@
+﻿@model MoneyTransformer.Models.Useraccount
+
+@{
+    ViewData["Title"] = "Sign Up";
+    Layout = "/Views/Shared/_AuthLayout.cshtml";
+}
+
+
+@*<p class="text-center">Your Social Campaigns</p>*@
+<div class="d-flex align-items-center justify-content-center">
+    <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+    <a class="text-primary fw-bold ms-2" href="/Authentication/Login">Sign In</a>
+    </div>
+<form method="POST" class="register-form" id="register-form" enctype="multipart/form-data" asp-action="Register">
+
+    <div class="mb-3">
+                       
+    <label asp-for="Fname" class="mb-0 fw-bold">First Name <span>*</span></label>
+    <input  asp-for="Fname" type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" required>
+<span asp-validation-for="Fname" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-3">
+
+    <label asp-for="Lname" class="mb-0 fw-bold">Last Name  <span>*</span></label>
+    <input  asp-for="Lname" type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp" required>
+    <span asp-validation-for="Lname" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+    <label asp-for="ImageFile" class="mb-0 fw-bold">Profile Picture</label>
+    <input asp-for="ImageFile" class="form-control" />
+    <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+    <label for="Email" class="mb-0 fw-bold">Email Address  <span>*</span></label>
+    <input type="text" class="form-control"name="Email" id="Email" aria-describedby="emailHelp" placeholder="Your Email" required>
+    </div>
+    <div class="mb-4">
+    <label for="password" class="mb-0 fw-bold">Password  <span>*</span></label>
+    <input type="password"name="password" class="form-control" id="password" placeholder="password" required>
+                 
+    </div>
+    <div class="mb-4">
+    <label for="compassword" class="mb-0 fw-bold">Confirm Password  <span>*</span></label>
+    <input type="password"name="compassword" class="form-control" id="compassword" placeholder="password" required>
+
+    </div>
+    <div style="color:red;">
+        @if (ViewData["Messag2"] != null)
+        {
+            @ViewData["Messag2"]
+        }
+    </div>
+    <div style="color:red;">
+                        @if (ViewData["check"] != null)
+                        {
+                            @ViewData["check"]
+                        }
+    </div>
+    <div>* Required Field</div>
+    <div class="form-group form-button">
+                <input type="submit" name="signup" id="signup" class="form-submit  w-100 py-8 fs-4 mb-4 rounded-2"style="background-color: #7679ee;color: white;border-color: #7679ee;" value="Sign Up"/>
+            </div>
+    @*<a href="/Home/Index" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a>*@
+                  
+</form>
+        <div class="d-flex align-items-center justify-content-center">
+           <p class="fs-4 mb-0 fw-bold">Back</p>
+     <a class="text-primary fw-bold ms-2" href="/Home/Index">Home</a>
+
+       </div>        
+@*<h1>Register</h1>
+
+<h4>Useraccount</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data" asp-action="Register">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Fname" class="control-label"></label>
+                <input asp-for="Fname" class="form-control" required />
+                <span asp-validation-for="Fname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lname" class="control-label"></label>
+                <input asp-for="Lname" class="form-control"required />
+                <span asp-validation-for="Lname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" required/>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                                <label for="Email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="text" name="Email" id="Email" placeholder="Your Email" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="password" required/>
+                            </div>
+                            <div style="color:red;">
+                                @if (ViewData["Messag2"] != null)
+                                {
+                                    @ViewData["Messag2"]
+                                }
+                            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+*@
+
+

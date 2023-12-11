@@ -1,0 +1,64 @@
+﻿@model MoneyTransformer.Models.Aboutu
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Aboutu</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Text1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Text1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Text2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Text2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Text3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Text3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Text4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Text4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image1path)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image1path)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image2path)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image2path)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image3path)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image3path)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

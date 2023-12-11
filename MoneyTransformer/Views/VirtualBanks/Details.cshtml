@@ -1,0 +1,55 @@
+﻿@model MoneyTransformer.Models.VirtualBank
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>VirtualBank</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cardnumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cardnumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Expireddate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Expireddate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cvv)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cvv)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Owneremanil)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Owneremanil)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ownername)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ownername)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

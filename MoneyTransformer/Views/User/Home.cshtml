@@ -1,0 +1,127 @@
+﻿@model Tuple<IEnumerable<Testimonial>,IEnumerable<Home>,IEnumerable<Wallet>>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var i = 0;
+}
+
+<style>
+    @@media (max-width: 1000px){
+img.img-fluid.flex-shrink-0.rounded-circle {
+    width: 194px;
+    /*margin-bottom: -135px;*/
+}}
+</style>
+  <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container  px-lg-5">
+                    <div class="row g-5 ">
+                        <div class="col-lg-3 text-center text-lg-start py-5">
+                              <img src = @Url.Content("~/Images/" + ViewBag.image) asp-append-version="true" class="img-fluid flex-shrink-0 rounded-circle"  />
+
+                    @*<img class="img-fluid" src="~/Images/Home2.png"alt="">*@
+                        </div>
+                        <div class="col-lg-6 py-5 text-center text-lg-start">
+                
+                        <h1 class="text-white mb-4 animated zoomIn">Welcome @ViewBag.Fname to MoneyMove</h1>
+                        <p class="text-white pb-3 animated zoomIn">Create and active New Wallet with us</p>
+                        <a href="/UpdateInfo/DisplayInfo" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">See Profile</a>
+
+                </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+        <!-- Service Start -->
+
+<div class="container-xxl py-5" id="wallets">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="position-relative d-inline text-primary ps-4">See</h6>
+                    <h2 class="mt-2">Your Wallets</h2>
+                   
+                </div>
+                <div class="row g-4">
+                    
+            @foreach (var item in Model.Item3)
+            {
+                @*@if (i >= 3) break;
+                else i++;*@
+                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                    <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                       
+                        <div class=" flex-shrink-0">
+                            
+                                <img class="img-fluid flex-shrink-0 rounded-circle mb-4" style="    width: 118px;height: 114px;border-style: groove;border-color: white;"  src = @Url.Content("~/Images/" + item.Bank.Imagepath) asp-append-version="true"   >
+
+                                </div>
+                                <h5 class="mb-3">@item.Bank.Namee</h5>
+                                <p>@item.Bank.Descreption</p>
+                                <p>@item.Bank.Phonenumber</p>
+                                <a asp-action="WalletDetails" asp-route-id="@item.Id" class="bb btn px-3 mt-auto mx-auto">See info</a>
+                            
+                        </div>
+                </div>
+
+            }
+             <div class="row g-4 justify-content-md-center">
+                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                        <div class=" d-flex flex-column justify-content-center text-center rounded" style="height: 30px;">
+                    @*<a class="btn px-3 mt-auto mx-auto" href="/User/CreateWallet">Go To See Banks</a>*@
+                    <a class="btn btn-primary rounded-pill px-4 me-3" id="test"  href="/User/CreateWallet">Go To See Banks</a>
+
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+<!-- Testimonial Start -->
+   <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp "data-wow-delay="0.1s">
+                    <h6 class="position-relative d-inline text-primary ps-4">Testemonial</h6>
+                    <h2 class="mt-2">Our customer Feedback</h2>
+             </div>
+<div class="container-xxl bg-primary testimonial py-5 my-5 wow fadeInUp"  data-wow-delay="0.1s">
+    <div class="container py-5 px-lg-5">
+
+        <div class="owl-carousel testimonial-carousel">
+            @foreach (var item in Model.Item1)
+            {
+                if (item.Status != "onhold")
+                {
+
+                    <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                        <i class="fa fa-quote-left fa-2x mb-3"></i>
+                        <p>@Html.DisplayFor(modelItem => item.Text)</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" style="width:50px;height:50px"  src = @Url.Content("~/Images/" + item.User.ImagePath) asp-append-version="true"   >
+
+                            <div class="ps-3">
+                                <h6 class="text-white mb-1">@Html.DisplayFor(modelItem => item.User.Fname) @Html.DisplayFor(modelItem => item.User.Lname)</h6>
+                                <small> @Html.DisplayFor(modelItem => item.TestimonialDate)</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }       
+        </div>
+    </div>
+ 
+             <a href="/User/AddReview" class="btn  rounded-pill py-2 px-4 ms-3" style="background-color: white;
+           color: #7679ee;"sty>Add Comment</a>
+
+    
+ </div>
+
+ <!-- Testimonial End -->
+
+
+
+

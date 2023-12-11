@@ -1,0 +1,156 @@
+﻿@model MoneyTransformer.Models.Useraccount
+
+@{
+    ViewData["Title"] = "UpdateProfile";
+    if (ViewBag.roleid == 1)
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    else
+        Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+
+@if (ViewBag.roleid == 2)
+{
+        <!-- Navbar & Hero Start -->
+     <div class="container-xxl position-relative p-0">
+        <div class="container-xxl py-5 bg-primary hero-header mb-5">
+            <div class="container my-5 py-5 px-lg-5">
+                <div class="row g-5 py-5">
+                    <div class="col-12 text-center">
+                            <h1 class="text-white animated zoomIn">Welcom @ViewBag.Fname</h1>
+                        <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a class="text-white" href="/Home/Index">Home</a></li>
+                                @*<li class="breadcrumb-item"><a class="text-white" href="/Home/">Pages</a></li>*@
+                                <li class="breadcrumb-item text-white active" aria-current="page">Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Navbar & Hero End -->
+
+}
+  <div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+
+    <hr class="mt-0 mb-4">
+
+    <div class="row justify-content-md-center">
+
+        <div class="col-xl-5 col-lg-6">
+            <!-- Profile picture card-->
+
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                 <img src = @Url.Content("~/Images/" + Model.ImagePath) asp-append-version="true"  width ="200px" height ="200px">
+                   <!-- Form Group (username)-->
+                        <div class="mb-3">
+                        @* <label class="small mb-1" for="inputUsername">Username: </label>*@
+                            <span>@ViewBag.username</span> 
+
+                        </div>
+                    @*<!-- Profile picture upload button-->
+                    <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 col-lg-6">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+
+            <form  method="POST" asp-controller="UpdateInfo" asp-action="UpdateInfo" enctype="multipart/form-data">
+
+
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+
+                                <label asp-for="Fname" class="control-label small mb-1" for="Fname">First name</label>
+                                <input asp-for="Fname" class="form-control" id="Lname" type="text" placeholder="Enter your first name"  >
+                                <span asp-validation-for="Fname" class="text-danger "></span>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label asp-for="Lname" class="small mb-1" for="Lname">Last name</label>
+                                <input asp-for="Lname" class="form-control" id="Lname" type="text" placeholder="Enter your last name">
+                                <span asp-validation-for="Lname" class="text-danger "></span>
+                            </div>
+                        </div>
+                                            <!-- Profile picture upload button-->
+                    <label asp-for="ImageFile" class="control-label">Change Image</label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                      <!-- Form Group (username)-->
+
+                        <div class="mb-3">
+                            <label  for="Email" class="small mb-1" >Username </label>
+                            <input  class="form-control"  name="Email" id="Email" type="text" placeholder="Enter your new Email"  >
+                        </div>
+                         <!-- Form Group (username)-->
+                         <div class="mb-3">
+                            <label class="small mb-1" for="Currentpassword">Current Password </label>
+                            <input class="form-control" id="Currentpassword" name="Currentpassword" type="password" placeholder="Enter your current Password" >
+                            <div style="color:red; font-size:11px">
+                                @if (ViewData["checkcurr"] != null)
+                                {
+                                    @ViewData["checkcurr"]
+                                }
+                            </div>
+                             <div style="color:red; font-size:11px">
+                                @if (ViewData["current"] != null)
+                                {
+                                    @ViewData["current"]
+                                }
+                            </div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="newpassword">New Password </label>
+                            <input class="form-control" id="newpassword" name="newpassword" type="password" placeholder="Enter your new Password" >
+                            <div style="color:red; font-size:11px">
+                                @if (ViewData["checknew"] != null)
+                                {
+                                    @ViewData["checknew"]
+                                }
+                            </div>
+                            <div style="color:red; font-size:11px">
+                                @if (ViewData["new"] != null)
+                                {
+                                    @ViewData["new"]
+                                }
+                            </div>
+
+                        </div>
+
+                        @*<div class="mb-3">
+                            <label class="small mb-1" for="confirmpassword">confirm Password </label>
+                            <input class="form-control" id="confirmpassword" name="confirmpassword" type="password" placeholder="confirm your Password"  >
+                        </div>*@
+
+
+                        <!-- Save changes button-->
+                <div class="form-group">
+                   <input type="submit" value="Save" id="signup" class="form-submit"  />
+                </div>
+
+             </form>       
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+</div>

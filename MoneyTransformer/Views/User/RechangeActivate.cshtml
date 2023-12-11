@@ -1,0 +1,206 @@
+﻿@model MoneyTransformer.Models.VirtualBank
+
+@{
+    ViewData["Title"] = "RechangeActivate";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<style>
+    @@media (max-width: 960px) {
+img.img-fluid.flex-shrink-0.rounded-circle {
+    margin-top: -146px;
+    width: 311px;
+}}
+    
+</style>
+
+  <!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0">
+
+    <div class="container-xxl py-5 bg-primary hero-header mb-5">
+        <div class="container  px-lg-5 p-5">
+            <div class="row g-5 ">
+                <div class="col-lg-4 text-center text-lg-start  py-5">
+                    <img src = "~/Images/bank-card-mobile.png"class="img-fluid flex-shrink-0 rounded-circle"  />
+                         @*<h1 class="text-white mb-4 animated zoomIn">VISA CARD </h1>*@
+
+                </div>
+
+                <div class="col-lg-6 py-5  text-lg-start card">
+
+                <div class="container">
+<div class="row">
+
+<div class="">
+
+
+<div class="panel-body">
+ <form asp-action="RechangeActivate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+            <div class="col-xs-12">
+                 <div class="form-group">
+                            <label asp-for="Cardnumber" class="control-label">Card Number</label>
+                            <div class="input-group">
+                            <input asp-for="Cardnumber" class="form-control" placeholder="Valid Card Number" requird/>
+                            <span class="input-group-addon pt-2" style="background-color: whitesmoke; width: 32px;text-align: center; border-end-end-radius: 10px;border-start-end-radius: 10px"><i class="fa fa-credit-card"></i></span>
+                             </div>
+                            <span asp-validation-for="Cardnumber" class="text-danger"></span>
+                        </div>
+                  </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-7 col-md-7">
+                <div class="form-group">
+                    <label asp-for="Expireddate" class="control-label mt-3"><span class="visible-xs-inline">EXP</span> DATE</label>
+                    <input asp-for="Expireddate" type="month" class="form-control"placeholder="MM / YY" requird/>@*autocomplete="cc-exp"*@ 
+                    <span asp-validation-for="Expireddate" class="text-danger"></span>
+               </div>
+            </div>
+            <div class="col-xs-5 col-md-5 pull-right">
+                <div class="form-group">
+                    <label asp-for="Cvv" class="control-label mt-3">CVV</label>
+                    <input  asp-for="Cvv" class="form-control"placeholder="000"autocomplete="cc-csc" requird/>
+                    <span asp-validation-for="Cvv" class="text-danger"></span>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label for="amount" class="form-label "></label>
+                <input type="text"name="amount" class="form-control" id="amount" placeholder="Money Amount" required>
+
+            </div>
+            </div>                        
+            </div>
+            <div class="row">
+            <div class="col-xs-12">
+                @if (ViewData["notvalid"] != null)
+                {
+                    @ViewData["notvalid"]
+                    ;
+                }
+             <div class="form-group p-4 mt-3">
+                            <input type="submit" value="Confirem" class="btn btn-primary" />
+                        </div>
+                        </div>
+            </div>
+
+            </form>
+            </div>
+            </div>            
+            <!-- CREDIT CARD FORM ENDS HERE -->
+
+
+            </div>            
+
+
+
+            </div>
+
+        </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Navbar & Hero End -->
+
+@*  <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container  px-lg-5">
+                    <div class="row g-5 ">
+                        <div class="col-lg-3 text-center text-lg-start py-5">
+                              <img src = @Url.Content("~/Images/" + ViewBag.image) asp-append-version="true" class="img-fluid flex-shrink-0 rounded-circle"  />
+
+                    @*<img class="img-fluid" src="~/Images/Home2.png"alt="">
+                        </div>
+                        <div class="col-lg-6 py-5 text-center text-lg-start">
+
+                        <h1 class="text-white mb-4 animated zoomIn">Welcome @ViewBag.Fname to MoneyMove</h1>
+                        <p class="text-white pb-3 animated zoomIn">Create and active New Wallet with us</p>
+                        <a href="/UpdateInfo/DisplayInfo" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">See Profile</a>
+
+                </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+<div class="container">
+<div class="row">
+
+<div class="col-xs-12 col-md-4">
+
+
+<div class="panel-body">
+ <form asp-action="RechangeActivate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+<div class="row">
+<div class="col-xs-12">
+     <div class="form-group">
+                <label asp-for="Cardnumber" class="control-label">Card Number</label>
+                <div class="input-group">
+                <input asp-for="Cardnumber" class="form-control" placeholder="Valid Card Number" requird/>
+                <span class="input-group-addon pt-2" style="background-color: whitesmoke; width: 32px;text-align: center; border-end-end-radius: 10px;border-start-end-radius: 10px"><i class="fa fa-credit-card"></i></span>
+                 </div>
+                <span asp-validation-for="Cardnumber" class="text-danger"></span>
+            </div>
+      </div>
+</div>
+<div class="row">
+<div class="col-xs-7 col-md-7">
+    <div class="form-group">
+                <label asp-for="Expireddate" class="control-label"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                <input asp-for="Expireddate" type="month" class="form-control"placeholder="MM / YY" requird/>@*autocomplete="cc-exp"
+                <span asp-validation-for="Expireddate" class="text-danger"></span>
+    </div>
+</div>
+<div class="col-xs-5 col-md-5 pull-right">
+    <div class="form-group">
+                <label asp-for="Cvv" class="control-label">CVV</label>
+                <input  asp-for="Cvv" class="form-control"placeholder="000"autocomplete="cc-csc" requird/>
+                <span asp-validation-for="Cvv" class="text-danger"></span>
+            </div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+    <div class="form-group">
+               <label for="amount" class="form-label"></label>
+               <input type="text"name="amount" class="form-control" id="amount" placeholder="Money Amount" required>
+
+            </div>
+</div>                        
+</div>
+<div class="row">
+<div class="col-xs-12">
+    @if(ViewData["notvalid"]!=null)
+    {
+        @ViewData["notvalid"];
+    }
+ <div class="form-group p-4">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            </div>
+</div>
+
+</form>
+</div>
+</div>            
+<!-- CREDIT CARD FORM ENDS HERE -->
+
+
+</div>            
+
+
+
+</div>*@

@@ -1,0 +1,44 @@
+﻿@model MoneyTransformer.Models.Bank
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Bank</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Bank Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Namee)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descreption)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descreption)
+        </dd>
+        <dt class = "col-sm-2">
+            Bank Phone Number
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phonenumber)
+        </dd>
+        <dt class = "col-sm-2">
+            Bank Picture
+        </dt>
+        <dd class = "col-sm-10">
+          <img  class="img-fluid flex-shrink-0 rounded-circle" style="width:105px;height:87px"  src = @Url.Content("~/Images/" + Model.Imagepath) asp-append-version="true" >
+
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

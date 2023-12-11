@@ -1,0 +1,50 @@
+﻿@model MoneyTransformer.Models.Bank
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="">
+    <div class="card-body">
+<h1 class="Admintitl p-4">Add Bank to the system </h1>
+
+</div>
+<div class="">
+<div class="row ">
+    <div class="col-md-4">
+          <form  method="POST" asp-action="Create" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="Namee" class="control-label">Name</label>
+                <input asp-for="Namee" class="form-control" />
+                <span asp-validation-for="Namee" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Descreption" class="control-label"></label>
+                <input asp-for="Descreption" class="form-control" />
+                <span asp-validation-for="Descreption" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Phonenumber" class="control-label">Phone Number</label>
+                <input asp-for="Phonenumber" class="form-control" />
+                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ImageFile1" class="control-label">Image</label>
+                <input asp-for="ImageFile1" class="form-control" />
+                <span asp-validation-for="ImageFile1" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3 mb-3">
+                <input type="submit" value="ADD" class="btn btn-primary pt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<div>
+    <a asp-action="Index">Back to Banks</a>
+</div>
+

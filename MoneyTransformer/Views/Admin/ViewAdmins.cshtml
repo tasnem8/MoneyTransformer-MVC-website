@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MoneyTransformer.Models.UserInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-body ">
+
+        <h1 class="Admintitl" >Admins</h1>
+    </div>
+    <p class="ps-4">
+    <a asp-action="AddAdmin"class="btn btn-primary" >Add New Admin</a>
+</p>
+    <div class="card-body">
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                Picture
+            </th>
+            <th>
+                 Name
+            </th>
+           
+             <th>
+                 Email
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var item in Model)
+                {
+            <tr>
+                      <td>
+                         <img src = @Url.Content("~/Images/" + item.useraccount.ImagePath) asp-append-version="true" width="35" height="35" class="rounded-circle">
+                        </td>
+                <td>
+                            @Html.DisplayFor(modelItem => item.useraccount.Fname) @Html.DisplayFor(modelItem => item.useraccount.Lname)
+                </td>
+              
+                    <td>
+                            @Html.DisplayFor(modelItem => item.userlogin.Email)
+                    </td>
+                    <td>
+                      <a class="btn btn-danger" href="#popup1">Delete</a>
+                        <form asp-controller="Useraccounts"  asp-action="Delete">
+
+                        <div id="popup1" class="overlay">
+                            <div class="popup">
+                                   <h2>Delete Admin @Html.DisplayFor(modelItem => item.useraccount.Fname) @Html.DisplayFor(modelItem => item.useraccount.Lname)</h2>
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    Sure, Do you want to delete the Admin ?
+
+                                <input type="submit" value="Delete" class="btn btn-danger" asp-route-id="@item.useraccount.Id"/> 
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </td>
+
+            </tr>
+                }
+    </tbody>
+</table>
+</div>
+</div>

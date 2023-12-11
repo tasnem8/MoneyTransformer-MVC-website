@@ -1,0 +1,281 @@
+﻿@model Tuple<IEnumerable<Testimonial>,IEnumerable<Home>,IEnumerable<Bank>>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var i = 0;
+}
+<!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/785edc69fa.js" crossorigin="anonymous"></script>
+
+
+  <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+     
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container  px-lg-5">
+                    <div class="row g-5 py-5">
+                        <div class="col-lg-6 py-5 text-center text-lg-start">
+                    @if (ViewBag.roleid != 2)
+                    {
+                        @*<h1 class="text-white mb-4 animated zoomIn">Transfer your Money easily with MoneyMove</h1>*@
+                            <h1 class="text-white mb-4 animated zoomIn">@Model.Item2.First().Text1</h1>
+
+                        <p class="text-white pb-3 animated zoomIn">Harry up and Create your Wallet Free</p>
+                    
+                        <a href="/Authentication/Register" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Create New a Account</a>
+                       
+                    }
+                    @if (ViewBag.roleid == 2)
+                    {
+                            <h1 class="text-white mb-4 animated zoomIn">Welcome @ViewBag.Fname to MoneyMove</h1>
+                            <p class="text-white pb-3 animated zoomIn">Create and active New Wallet with us</p>
+                            <a href="/User/AddReview" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">CREATE WALLET</a>
+                       
+                    }
+
+                </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                              <img src = @Url.Content("~/Images/" + Model.Item2.First().Image1path) asp-append-version="true" class="img-fluid" />
+
+                            @*<img class="img-fluid" src="~/Images/Home2.png"alt="">*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(29, 29, 39, 0.7);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title position-relative mb-4 pb-2">
+                    <h6 class="position-relative text-primary ps-4">Why MoneyMove?</h6>
+                    <h2 class="mt-2"> It’s fast and easy to send money online.</h2>
+                </div>
+                <p class="mb-4">Transfer Money For free  </p>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-9">
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Open MoneyMove Account and Wallet Free</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Online, Fast and easy Transactions</h6>
+                           
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Trusted and Secure</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Different Banks avaliable </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Avaliable 24/7 </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>No limite Transactions </h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Payee and Credit Confirmation </h6>
+
+
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mt-4">
+                    <a class="btn btn-primary rounded-pill px-4 me-3" href="/Authentication/Register">Get Start</a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="@ViewBag.facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-3" href="@ViewBag.instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+             <div class="col-lg-6">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="~/Images/home3.png">
+               </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+        <!-- Portfolio Start -->
+    <div class="container-xxl py-5">
+        <div class="container px-lg-5">
+            <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="position-relative d-inline text-primary ps-4">How does MoneyMove work?</h6>
+                <h2 class="mt-2">Only Few Steps Enable You To Transfare Money With Us   </h2>
+            </div>
+  
+            <div class="row g-4 portfolio-container">
+                <div class="col-lg-4 col-md-6 portfolio-item first wow zoomIn" data-wow-delay="0.1s">
+
+                    <div class="position-relative rounded overflow-hidden">
+
+                        <img class="img-fluid w-100" src="https://img.freepik.com/free-vector/privacy-policy-concept-illustration_114360-7853.jpg?w=740&t=st=1688992149~exp=1688992749~hmac=1a2643800d9004d01b98b38764c7a4bc955650497131ff39388572c329133e1c" alt="">
+                        <div class="portfolio-overlay">
+                            <div class="btn btn-light" ><i class="fa-solid fa-1 fa-beat text-primary"></i></div>
+                            <div >
+                        @*<small class="text-white"><i class="fa fa-folder me-2"></i>Web Design</small>
+                                <a class="h5 d-block text-white mt-1 mb-0" href="">Project Name</a>>*@
+                        @*<small class="text-white"><i class="fa fa-folder me-2"></i>Web Design</small>*@
+                                <p class=" text-lg-center h5 d-block text-white mt-1 mb-4">Create Account For Free</p>
+                                <a class="  text-primary mt-1 mb-0 ms-5 border-0 px-4 rounded-pill bg-white " href="~/Authentication/Register">Sign Up</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item second wow zoomIn" data-wow-delay="0.3s">
+
+                    <div class="position-relative rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="https://img.freepik.com/free-vector/e-wallet-concept-illustration_114360-7957.jpg?w=740&t=st=1688991900~exp=1688992500~hmac=12d1af552881d3226f3a8b3e7d4dafe32056b590782e47405516995bd7887f03" alt="">
+                        <div class="portfolio-overlay">
+                            <div class="btn btn-light"  data-lightbox="portfolio"><i class="fa-solid fa-2 fa-beat text-primary"></i></div>
+
+                            <div >
+                        @*<small class="text-white"><i class="fa fa-folder me-2"></i>Web Design</small>*@
+                                <p class=" text-lg-center h5 d-block text-white mt-1 mb-4">Create and Activate a wallet</p>
+                                <a class="  text-primary mt-1 mb-0 ms-5 border-0 px-4 rounded-pill bg-white " href="~/Authentication/Register">Sign Up</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item first wow zoomIn" data-wow-delay="0.6s">
+                    <div class="position-relative rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="https://img.freepik.com/free-vector/transfer-money-concept-illustration_114360-3064.jpg?w=740&t=st=1688991679~exp=1688992279~hmac=3602b7e5bc80cbd44d84d95eae9e80116cb9618251c9bfb1dd837e17b085fa81" alt="">
+                        <div class="portfolio-overlay">
+                            <div class="btn btn-light"><i class="fa-solid fa-3 fa-beat text-primary"></i></div>
+
+                                <div >
+                        @*<small class="text-white"><i class="fa fa-folder me-2"></i>Web Design</small>*@
+                                <p class=" text-lg-center h5 d-block text-white mt-1 mb-4">Trancefar Money for Free at the same bank<br /> and for .05% at the different Bank Account wallet</p>                                   
+                                <a class="  text-primary mt-1 mb-0 ms-5 border-0 px-4 rounded-pill bg-white " href="~/Authentication/Register">Sign Up</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Portfolio End -->
+
+<!-- Testimonial Start -->
+   <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" id="hometest" data-wow-delay="0.1s">
+                   <h6 class="position-relative d-inline text-primary ps-4">Testimonial</h6>
+                    <h2 class="">See what our customers say about MoneyMove</h2>
+             </div>
+<div class="container-xxl bg-primary testimonial py-5 my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5 px-lg-5">
+     
+        <div class="owl-carousel testimonial-carousel">
+            @foreach (var item in Model.Item1)
+            {
+                if(item.Status != "onhold")
+                {
+                   
+                    <div class="testimonial-item bg-transparent border rounded text-white p-4">
+                        <i class="fa fa-quote-left fa-2x mb-3"></i>
+                        <p>@Html.DisplayFor(modelItem => item.Text)</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" style="width:50px;height:50px"  src = @Url.Content("~/Images/" + item.User.ImagePath) asp-append-version="true"   >
+
+                            <div class="ps-3">
+                                <h6 class="text-white mb-1">@Html.DisplayFor(modelItem => item.User.Fname) @Html.DisplayFor(modelItem => item.User.Lname)</h6>
+                                <small> @Html.DisplayFor(modelItem => item.TestimonialDate)</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+            }       
+        </div>
+    </div>
+    @if (ViewBag.roleid == 2)
+    {
+         <a href="/User/AddReview" class="btn  rounded-pill py-2 px-4 ms-3" style="background-color: white;
+           color: #7679ee;"sty>Add Comment</a>
+            
+    }
+ </div>
+
+ <!-- Testimonial End -->
+
+
+
+
+
+        <!-- Service Start -->
+       
+<div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="position-relative d-inline text-primary ps-4">Banks</h6>
+                    <h2 class="mt-2">Banks have so far connected to MoneyMove</h2>
+                </div>
+                
+                <div class="row g-4">
+        @foreach (var item in Model.Item3)
+        {
+               @* @if (i > 2) break;
+                else i++;  service-item*@
+                    <div class="col-lg-2 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                        <div class=" d-flex flex-column justify-content-center text-center rounded">
+                            <div class="flex-shrink-0">
+                                   <img class="img-fluid flex-shrink-0 rounded-circle mb-4" style="    width: 118px;height: 114px;"  src = @Url.Content("~/Images/" + item.Imagepath) asp-append-version="true"   >
+                            </div>
+                                <h5 class="form-select-sm mb-3">@item.Namee</h5>
+                            @*<a class="btn px-3 mt-auto mx-auto" href="">Read More</a>*@
+                        </div>
+                    </div>
+                   @* <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column justify-content-center text-center rounded">
+                            <div class=" flex-shrink-0">
+                                   <img class="img-fluid flex-shrink-0 rounded-circle mb-4" style="    width: 118px;height: 114px;"  src = @Url.Content("~/Images/" + item.Imagepath) asp-append-version="true"   >
+
+                            </div>
+                            <h5 class="mb-3">@item.Namee</h5>
+                            <p>@item.Descreption</p>
+                            <a class="btn px-3 mt-auto mx-auto" href="/Authetincation/Login">SignUp</a>
+                        </div>
+                    </div>*@
+                   
+                }
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+
+
+
+
+@*  search bar      <!-- Newsletter Start -->
+<div class="container-xxl bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container px-lg-5">
+                <div class="row align-items-center" style="height: 250px;">
+                    <div class="col-12 col-md-6">
+                        <h3 class="text-white">Ready to get started</h3>
+                        <small class="text-white">Diam elitr est dolore at sanctus nonumy.</small>
+                        <div class="position-relative w-100 mt-3">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center mb-n5 d-none d-md-block">
+                        <img class="img-fluid mt-5" style="height: 250px;" src="~/HomeAssets/img/newsletter.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Newsletter End -->*@

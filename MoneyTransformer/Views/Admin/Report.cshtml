@@ -1,0 +1,311 @@
+﻿@model IEnumerable<MoneyTransformer.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var jsonData = ViewBag.JsonData4;
+    var jsonData2 = ViewBag.JsonData5;
+}
+@*<link rel="stylesheet" href="~/css/site.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+*@
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+<div class="card" id="">
+  <div class="card-body ">
+    <h1 class="Admintitl">
+      <i class="ti ti-file-description"></i>Report
+    </h1>
+  </div>
+  <div class="card-body row">
+    <div class="card col ms-5">
+      <div id="editor"></div>
+      <button onclick="createPdfMonth()" class="btn btn-primary mt-3" id="cmd">Download monthly report</button>
+      <div id="contentMonth">
+        <h5 class="mt-3">Monthly Performance [@ViewBag.month / @ViewBag.year]</h5>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4 border-top border-3">
+              <strong>1. Transaction Volume</strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Total number of transactions processed: @ViewBag.transactionMonCount </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Percentage change from the previous month: @ViewBag.percentagPreNow % </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>2. User Engagement </strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Registered users: @ViewBag.RegisUsers </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of wallet is created: @ViewBag.Wal </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of wallet is Activated: @ViewBag.ActivWal </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>3. Customer Support </strong>
+            </span>
+          </li>
+          @*<li class="list-group-item d-flex justify-content-between align-items-center"> number of Messages: @ViewBag.messages </li>*@
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of Reviews are sent: @ViewBag.test </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of Reviews are Posted: @ViewBag.posttesti </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>4. Revenue</strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Total Revenue: @ViewBag.thisMonthReven </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Percentage change from the previous month: @ViewBag.PreThisPerRev % </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-8 d-flex align-items-strech">
+      <div class="card w-100">
+        <div class="card-body">
+         @* <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Sales [ @ViewBag.thisMonth ] Overview</h5>
+            </div>
+          </div>*@
+          <div id="chartMonth"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body row">
+    <div class="card col ms-5">
+      <div id="editor"></div>
+      <button onclick="createPdfYear()" class="btn btn-primary mt-3" id="cmd">Download Yearly report</button>
+      <div id="contentYear">
+        <h5 class="mt-3">Year Summery [@ViewBag.year]</h5>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4 border-top border-3">
+              <strong>1. Transaction Volume</strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Total number of transactions processed: @ViewBag.transactionYearCount </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Percentage change from the previous Year: @ViewBag.y_percentagPreNow % </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>2. User Engagement </strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> All Registered users: @ViewBag.RegisUsers </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of wallet is created: @ViewBag.Y_Wal </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of wallet is Activated: @ViewBag.Y_ActivWal </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>3. Customer Support </strong>
+            </span>
+          </li>
+          @*<li class="list-group-item d-flex justify-content-between align-items-center"> All number of Messages: @ViewBag.messages </li>*@
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of Reviews are sent: @ViewBag.y_test </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Number of Reviews are Posted: @ViewBag.y_posttesti </li>
+        </ul>
+        <ul class="list-group  pt-3">
+          <li class=" d-flex justify-content-between align-items-center">
+            <span class="fs-4">
+              <strong>4. Revenue</strong>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Total Revenue: @ViewBag.y_thisYearReven </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center"> Percentage change from the previous Year: @ViewBag.y_PreThisPerRev % </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-8 d-flex align-items-strech">
+      <div class="card w-100">
+        <div class="card-body">
+          @*<div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Sales [ @ViewBag.thisYear ] Overview</h5>
+            </div>
+          </div>*@
+          <div id="chart3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+     function createPdfMonth(){
+        const { jsPDF } = window.jspdf;
+
+            var doc=new jsPDF();
+                  
+            // doc.text(20,20,'Report');
+            var elementHTML=document.querySelector("#contentMonth");
+            //var elementHTML2=document.querySelector("#body");
+                doc.html(elementHTML, {
+                callback: function(doc) {
+                      //  doc.addPage();
+                    // Save the PDF
+                    doc.save('Monthly_Report.pdf');
+                },
+                margin:[100,0,0,0],
+                //pagesplit:true,
+                x: 10,
+                y: 10,
+                width: 350, //target width in the PDF document   150
+                windowWidth: 1300 //window width in CSS pixels   1000
+                });
+
+                var dataURL = chartMonth.dataURI().then(({ imgURI, blob }) => {
+
+                doc.addImage(imgURI, 'PNG', 20, 10,150,80);
+                //doc.save('sample-document.pdf');
+
+
+                });
+           }
+
+function createPdfYear(){
+        const { jsPDF } = window.jspdf;
+
+            var doc=new jsPDF();
+
+            // doc.text(20,20,'Report');
+            var elementHTML=document.querySelector("#contentYear");
+            //var elementHTML2=document.querySelector("#body");
+                doc.html(elementHTML, {
+                callback: function(doc) {
+                      //  doc.addPage();
+                    // Save the PDF
+                    doc.save('Yearly_Report.pdf');
+                },
+                margin:[100,0,0,0],
+                //pagesplit:true,
+                x: 10,
+                y: 10,
+                width: 350, //target width in the PDF document   150
+                windowWidth: 1300 //window width in CSS pixels   1000
+                });
+
+                var dataURL = chart3.dataURI().then(({ imgURI, blob }) => {
+
+                doc.addImage(imgURI, 'PNG', 20, 10,150,80);
+                //doc.save('sample-document.pdf');
+
+
+                });
+           }
+</script>
+
+<script type="text/javascript">
+
+var jsonData = @Html.Raw(jsonData2);
+
+
+var chartData2 = jsonData.map(item => ({
+        x: item.years,
+        y: item.TotalCommission
+    }));
+
+    var options = {
+        chart: {
+            type: 'bar'
+        },
+         title: {
+            text: 'Revenu Yearly Performance', // The title of your chart
+            align: 'center', // Title alignment (optional)
+            margin: 10 // Margin around the title (optional)
+          },
+        
+        xaxis: {
+             type: 'datetime',
+             min: new Date('01/01/2020').getTime(),
+            title: {
+              text: 'Years' // Label for the x-axis
+            }
+
+        },
+       
+         yaxis:{
+            title: {
+              text: 'comission' // Label for the x-axis
+            }
+        },
+        series: [{
+            name: 'Commission',
+            data: chartData2
+        }],
+         tooltip: {
+    enabled: false // Disable the tooltip
+  }
+    };
+
+
+    var chart3 = new ApexCharts(document.querySelector("#chart3"), options);
+    chart3.render();
+
+
+    var jsonData1 = @Html.Raw(jsonData);
+
+
+var chartmonth = jsonData1.map(item => ({
+        x: item.month,
+        y: item.TotalCommission
+    }));
+   
+    ///
+ 
+
+    var options2 = {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Revenu Monthly Performance', // The title of your chart
+            
+            align: 'center', // Title alignment (optional)
+            margin: 10 // Margin around the title (optional)
+          },
+
+   
+        xaxis: {
+            type: 'datetime',
+            title: {
+              text: 'Months' // Label for the x-axis
+            },
+  
+          
+        },
+        yaxis:{
+            title: {
+              text: 'comission' // Label for the x-axis
+            }
+        },
+        series: [{
+            name: 'Commission',
+            data: chartmonth
+            //data: monthlyData.map(dataPoint => dataPoint.TotalCommission),
+        }],
+         tooltip: {
+    enabled: false // Disable the tooltip
+  }
+    };
+
+
+    var chartMonth = new ApexCharts(document.querySelector("#chartMonth"), options2);
+    chartMonth.render();
+
+
+</script>

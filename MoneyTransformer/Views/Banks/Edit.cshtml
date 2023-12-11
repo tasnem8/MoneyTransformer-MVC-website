@@ -1,0 +1,60 @@
+﻿@model MoneyTransformer.Models.Bank
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+  <div class="card-body">
+<h1 class="Admintitl p-4">Update <i><b>@Model.Namee</b></i>  Informaions</h1>
+</div>
+<div class="card-body">
+   <form  method="POST" asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+             <input type="hidden" asp-for="Imagepath"  />
+
+  <div class="container-fluid">
+    <div class="row card-body">
+      <div class="col-xl-6 col-lg-6 col-md-6" >
+                 <img src = @Url.Content("~/Images/" + Model.Imagepath) asp-append-version="true"  width ="200px" height ="200px">
+                 <div class="form-group mt-3">
+                <label asp-for="ImageFile1" class="control-label">Bank Picture</label>
+                <input asp-for="ImageFile1" class="form-control" />
+                <span asp-validation-for="ImageFile1" class="text-danger"></span>
+            </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6" >
+          <div class="form-group mt-3" hidden>
+                <label asp-for="Imagepath" class="control-label">Name</label>
+                <input asp-for="Imagepath" class="form-control" />
+                <span asp-validation-for="Imagepath" class="text-danger"></span>
+            </div>
+        <div class="form-group mt-3">
+                <label asp-for="Namee" class="control-label">Name</label>
+                <input asp-for="Namee" class="form-control" />
+                <span asp-validation-for="Namee" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Descreption" class="control-label"></label>
+                <input asp-for="Descreption" class="form-control" />
+                <span asp-validation-for="Descreption" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Phonenumber" class="control-label">Phone Number</label>
+                <input asp-for="Phonenumber" class="form-control" />
+                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+            </div>
+             <div class="form-group mt-3 mb-3">
+                <input type="submit" value="Save" class="btn btn-primary pt-2" />
+                 <div>
+                     <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>
+ 
+  </form>
+  </div>
+  </div>
